@@ -57,6 +57,8 @@ const RegistrationForm = () => {
   };
 
   return (
+    <div className="form-container">
+    <h2 className="form-title">Register</h2>
     <form onSubmit={handleSubmit}>
       <input name="firstName" type="text" placeholder="First Name" onChange={handleChange} required />
       <input name="lastName" type="text" placeholder="Last Name" onChange={handleChange} required />
@@ -111,6 +113,7 @@ const RegistrationForm = () => {
       <button type="submit">Submit</button>
       <button type="button" onClick={() => window.location.href = '/login'}>Go to Login</button>
     </form>
+    </div>
   );
 };
 
