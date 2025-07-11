@@ -41,7 +41,7 @@ const RegistrationForm = () => {
       const response = await fetch('http://localhost/server/register.php', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData)
+        body: JSON.stringify(formData),
       });
 
       const result = await response.json();
