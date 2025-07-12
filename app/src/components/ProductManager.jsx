@@ -52,8 +52,23 @@ function ProductManager() {
     fetchProducts();
   };
 
+  const handleLogout = () => {
+    localStorage.clear();
+    window.location.href = "/login";
+  };
+
   return (
     <div>
+      {/* NAVIGATION BAR */}
+      <nav style={navStyle}>
+        <div style={{ fontWeight: "bold", fontSize: "22px" }}>AbsProducts</div>
+        <div style={{ display: "flex", gap: "10px" }}>
+          <button onClick={() => window.location.href = "/products"} style={navBtnStyle}>Home</button>
+          <button onClick={() => window.location.href = "/about"} style={navBtnStyle}>About Us</button>
+          <button onClick={handleLogout} style={navBtnStyle}>Logout</button>
+        </div>
+      </nav>
+
       <h2>{editingId ? 'Edit Product' : 'Add Product'}</h2>
       <form onSubmit={handleSubmit}>
         <input name="title" placeholder="Title" value={form.title} onChange={handleChange} required />
@@ -63,19 +78,57 @@ function ProductManager() {
       </form>
 
       <h2>Product List</h2>
-      <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '20px' }}>
         {products.map((prod) => (
-          <div key={prod.id} style={{ border: '1px solid gray', padding: '10px', margin: '10px' }}>
+          <div key={prod.id} style={productCardStyle}>
             <h3>{prod.title}</h3>
             <p>{prod.description}</p>
             <p><b>Price:</b> ₹{prod.price}</p>
-            <button onClick={() => handleEdit(prod)}>Edit</button>
-            <button onClick={() => handleDelete(prod.id)}>Delete</button>
+            <div style={{ display: 'flex', justifyContent: 'space-between', gap: '10px' }}>
+              <button onClick={() => handleEdit(prod)} style={btnStyle}>Edit</button>
+              <button onClick={() => handleDelete(prod.id)} style={{ ...btnStyle, backgroundColor: "red" }}>Delete</button>
+            </div>
           </div>
         ))}
       </div>
     </div>
   );
 }
+
+const navStyle = {
+  backgroundColor: "#222",
+  color: "white",
+  padding: "10px 20px",
+  display: "flex",
+  justifyContent: "space-between",
+  alignItems: "center"
+};
+
+const navBtnStyle = {
+  backgroundColor: "#007bff",
+  color: "white",
+  border: "none",
+  padding: "6px 12px",
+  borderRadius: "4px",
+  cursor: "pointer"
+};
+
+const productCardStyle = {
+  border: '1px solid #ccc',
+  borderRadius: '10px',
+  padding: '15px',
+  width: '220px',
+  boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
+  backgroundColor: '#fff'
+};
+
+const btnStyle = {
+  backgroundColor: '#007bff',
+  color: '#fff',
+  padding: '6px 12px',
+  border: 'none',
+  borderRadius: '5px',
+  cursor: 'pointer'
+};
 
 export default ProductManager;

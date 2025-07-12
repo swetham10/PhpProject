@@ -23,6 +23,7 @@ function Login() {
     const data = await res.json();
     if (data.success) {
       alert("Login successful!");
+      navigate('/products');
       // navigate to home/dashboard if needed
     } else {
       setError(data.message || "Login failed");

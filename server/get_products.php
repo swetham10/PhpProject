@@ -1,6 +1,7 @@
 <?php
-include 'db.php';
-$result = $conn->query("SELECT * FROM products ORDER BY created_at DESC");
+header("Access-Control-Allow-Origin: *");
+require 'db.php';
+$result = $conn->query("SELECT * FROM products");
 $products = [];
 
 while ($row = $result->fetch_assoc()) {
