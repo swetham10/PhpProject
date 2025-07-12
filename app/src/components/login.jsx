@@ -51,7 +51,7 @@ function Login() {
         required
       />
       <button type="submit">Login</button>
-      <button type="button" onClick={() => navigate('/register')}>Register</button>
+      <button type="button" onClick={() => navigate('/')}>Register</button>
       <button type="button" onClick={() => navigate('/forget-password')}>Forget Password</button>
     </form>
   );
